@@ -5,37 +5,204 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IT'S IN | MEISTERFRISEURE</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,900;1,400&family=Inter:wght@200;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Inter:wght@200;300;400;600&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #050505; color: white; }
+        :root { --luxury-red: #e30613; }
+        body { font-family: 'Inter', sans-serif; background-color: #050505; color: white; scroll-behavior: smooth; }
         .font-serif { font-family: 'Playfair Display', serif; }
-        .nav-link { letter-spacing: 0.2em; font-size: 0.7rem; text-transform: uppercase; transition: all 0.4s; }
-        .nav-link:hover { color: #e30613; padding-left: 5px; }
-        .hero-video-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.4; z-index: -1; }
+        
+        /* Full-Screen Hero Background */
+        .hero-bg { 
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.8)), 
+                        url('https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=2069&auto=format&fit=crop');
+            background-size: cover; background-position: center; height: 100vh;
+        }
+
+        .nav-link { letter-spacing: 0.3em; font-size: 0.65rem; text-transform: uppercase; transition: 0.4s; cursor: pointer; }
+        .nav-link:hover { color: var(--luxury-red); }
+        
+        .section-hidden { display: none; }
+        .section-active { display: block; animation: fadeIn 0.8s ease-in-out; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        input, select, textarea { 
+            background: transparent !important; 
+            border-bottom: 1px solid rgba(255,255,255,0.1) !important; 
+            outline: none; transition: 0.4s; 
+        }
+        input:focus { border-bottom: 1px solid var(--luxury-red) !important; }
     </style>
 </head>
 <body>
 
-    <nav class="fixed w-full z-50 flex justify-between items-center px-12 py-8 bg-gradient-to-b from-black to-transparent">
-        <div class="text-2xl font-bold tracking-[0.3em]">IT'S <span class="text-[#e30613]">IN</span></div>
-        <div class="hidden md:flex space-x-12">
-            <a href="index.html" class="nav-link text-[#e30613]">Home</a>
-            <a href="leistungen.html" class="nav-link">Leistungen</a>
-            <a href="team.html" class="nav-link">Team</a>
-            <a href="kontakt.html" class="nav-link">Kontakt</a>
+    <!-- NAVIGATION -->
+    <nav class="fixed w-full z-50 flex justify-between items-center px-8 md:px-20 py-10 bg-gradient-to-b from-black/80 to-transparent backdrop-blur-sm">
+        <div class="text-2xl font-light tracking-[0.4em] cursor-pointer" onclick="showPage('home')">
+            IT'S <span class="text-[#e30613] font-bold">IN</span>
         </div>
-        <a href="termin.html" class="border border-white/20 px-8 py-3 text-[10px] uppercase tracking-[0.2em] hover:bg-[#e30613] hover:border-[#e30613] transition-all duration-500">Termin Online</a>
+        <div class="hidden md:flex space-x-12">
+            <span onclick="showPage('services')" class="nav-link">Leistungen</span>
+            <span onclick="showPage('team')" class="nav-link">Team</span>
+            <span onclick="showPage('contact')" class="nav-link">Kontakt</span>
+        </div>
+        <button onclick="showPage('booking')" class="text-[10px] uppercase tracking-[0.4em] border border-white/20 px-6 py-3 hover:bg-[#e30613] hover:border-[#e30613] transition-all">Booking</button>
     </nav>
 
-    <section class="relative h-screen flex items-center justify-center overflow-hidden">
-        <div class="hero-video-bg bg-[url('https://images.unsplash.com/photo-1512690196222-7c7d2990003d?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center"></div>
-        <div class="text-center z-10">
-            <h2 class="text-[#e30613] tracking-[0.5em] text-xs uppercase mb-6 font-semibold">Exzellenz & Handwerk</h2>
-            <h1 class="text-7xl md:text-9xl font-serif mb-12 leading-tight">True <br> <span class="italic font-light text-white/90">Fascination.</span></h1>
-            <div class="h-20 w-[1px] bg-[#e30613] mx-auto mb-12"></div>
-            <a href="termin.html" class="inline-block bg-[#e30613] px-12 py-5 text-xs uppercase tracking-[0.3em] font-bold hover:scale-105 transition-transform">Jetzt Erleben</a>
+    <!-- 🏠 HOME -->
+    <main id="home" class="section-active">
+        <section class="hero-bg flex items-center justify-center text-center">
+            <div class="max-w-5xl px-6">
+                <h2 class="text-[#e30613] tracking-[0.6em] text-[10px] uppercase mb-6 font-semibold">Exzellenz & Handwerk</h2>
+                <h1 class="text-6xl md:text-[10rem] font-serif italic font-light mb-8 opacity-95 leading-none">Mastery.</h1>
+                <p class="text-[10px] uppercase tracking-[0.8em] mb-12 text-white/40 italic">The art of perfection in Wolfsburg</p>
+                <div class="h-24 w-[1px] bg-gradient-to-b from-[#e30613] to-transparent mx-auto"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ✂️ LEISTUNGEN -->
+    <section id="services" class="section-hidden pt-40 pb-20 px-10">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-6xl font-serif italic mb-20">Dienstleistungen</h2>
+            <div class="grid md:grid-cols-2 gap-32">
+                <div class="space-y-12">
+                    <h3 class="text-[#e30613] tracking-widest text-[10px] uppercase border-b border-white/10 pb-4">Women</h3>
+                    <div class="flex justify-between items-end border-b border-white/5 pb-6">
+                        <div>
+                            <p class="text-xl font-serif italic">Cut & Signature Style</p>
+                            <p class="text-[10px] text-white/40 uppercase mt-2">Beratung, Wäsche, Finish</p>
+                        </div>
+                        <p class="text-lg">ab 85€</p>
+                    </div>
+                    <div class="flex justify-between items-end border-b border-white/5 pb-6">
+                        <div>
+                            <p class="text-xl font-serif italic">Balayage / Couture Color</p>
+                            <p class="text-[10px] text-white/40 uppercase mt-2">Individuelle Farbkunst</p>
+                        </div>
+                        <p class="text-lg">ab 140€</p>
+                    </div>
+                </div>
+                <div class="space-y-12">
+                    <h3 class="text-[#e30613] tracking-widest text-[10px] uppercase border-b border-white/10 pb-4">Men</h3>
+                    <div class="flex justify-between items-end border-b border-white/5 pb-6">
+                        <div>
+                            <p class="text-xl font-serif italic">Gentleman's Cut</p>
+                            <p class="text-[10px] text-white/40 uppercase mt-2">Präzision & Kopfmassage</p>
+                        </div>
+                        <p class="text-lg">ab 45€</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
+    <!-- 👥 TEAM -->
+    <section id="team" class="section-hidden pt-40 pb-20 px-10">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-center font-serif text-5xl italic mb-20">The Masters</h2>
+            <div class="grid md:grid-cols-3 gap-6 h-[70vh]">
+                <div class="relative group overflow-hidden bg-neutral-900">
+                    <div class="absolute inset-0 opacity-40 group-hover:opacity-100 transition-opacity duration-1000 bg-[url('https://images.unsplash.com/photo-1503910321442-7fce7d3a1b5a?q=80&w=1974&auto=format&fit=crop')] bg-cover"></div>
+                    <div class="absolute bottom-10 left-10">
+                        <p class="text-[#e30613] text-[10px] tracking-widest uppercase mb-2">Founder</p>
+                        <h3 class="text-2xl font-serif italic">Arkadius Wilhelm</h3>
+                    </div>
+                </div>
+                <div class="relative group overflow-hidden bg-neutral-800">
+                    <div class="absolute bottom-10 left-10">
+                        <p class="text-[#e30613] text-[10px] tracking-widest uppercase mb-2">Salon Manager</p>
+                        <h3 class="text-2xl font-serif italic">Jens Reineccius</h3>
+                    </div>
+                </div>
+                <div class="relative group overflow-hidden bg-neutral-900">
+                    <div class="absolute bottom-10 left-10">
+                        <p class="text-[#e30613] text-[10px] tracking-widest uppercase mb-2">Master Stylist</p>
+                        <h3 class="text-2xl font-serif italic">Gilberto S. Payan</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 📅 BOOKING -->
+    <section id="booking" class="section-hidden pt-40 pb-20 px-10">
+        <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-5xl font-serif italic mb-12">Reservierung</h2>
+            <div class="bg-white/5 p-12 backdrop-blur-xl border border-white/10 text-left">
+                <div class="space-y-10">
+                    <div class="flex flex-col">
+                        <label class="text-[9px] uppercase tracking-[0.3em] text-white/40 mb-4">Wählen Sie den Meister</label>
+                        <select class="py-3 text-lg font-light">
+                            <option>Arkadius C. Wilhelm</option>
+                            <option>Jens Reineccius</option>
+                            <option>Gilberto S. Payan</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="text-[9px] uppercase tracking-[0.3em] text-white/40 mb-6 block">Verfügbare Zeiten (30 Min.)</label>
+                        <div class="grid grid-cols-4 gap-4" id="slots">
+                            <!-- JS generiert Slots -->
+                        </div>
+                    </div>
+                    <button class="w-full bg-[#e30613] py-5 text-[10px] uppercase tracking-[0.4em] font-bold mt-10 hover:bg-white hover:text-black transition-all">Termin Anfragen</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 📞 KONTAKT -->
+    <section id="contact" class="section-hidden pt-40 pb-20 px-10">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-24">
+            <div>
+                <h1 class="text-6xl font-serif italic mb-12">Atelier</h1>
+                <div class="space-y-10 text-sm font-light tracking-wide text-white/60">
+                    <p>Klieverhagen 54<br>38440 Wolfsburg</p>
+                    <p>Di - Fr: 09:00 — 18:00<br>Sa: 08:00 — 14:00</p>
+                    <p class="text-white">T. 05361 272829<br>E. hello@itsin.de</p>
+                </div>
+            </div>
+            <div class="bg-white/5 p-10 border border-white/10">
+                <input type="text" placeholder="NAME" class="w-full py-6 mb-8 text-[10px] tracking-widest uppercase">
+                <input type="email" placeholder="EMAIL" class="w-full py-6 mb-8 text-[10px] tracking-widest uppercase">
+                <textarea placeholder="WIE KÖNNEN WIR HELFEN?" class="w-full py-6 mb-10 text-[10px] tracking-widest uppercase" rows="3"></textarea>
+                <button class="text-[#e30613] text-[10px] uppercase tracking-[0.4em] font-bold">Nachricht senden —&nbsp;</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-20 text-center opacity-20 text-[9px] tracking-[0.5em] uppercase">
+        &copy; 2026 IT'S IN Meisterfriseure. Private Selection.
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            document.querySelectorAll('main, section').forEach(s => {
+                s.classList.remove('section-active');
+                s.classList.add('section-hidden');
+            });
+            document.getElementById(pageId).classList.remove('section-hidden');
+            document.getElementById(pageId).classList.add('section-active');
+            window.scrollTo(0,0);
+        }
+
+        // Zeit-Slots von 09:00 bis 18:00
+        const slotContainer = document.getElementById('slots');
+        for (let hour = 9; hour < 18; hour++) {
+            ['00', '30'].forEach(min => {
+                const btn = document.createElement('button');
+                btn.className = "border border-white/10 py-2 text-[10px] hover:border-[#e30613] transition";
+                btn.innerText = `${hour}:${min}`;
+                btn.onclick = function() {
+                    document.querySelectorAll('#slots button').forEach(b => b.classList.remove('bg-[#e30613]'));
+                    this.classList.add('bg-[#e30613]');
+                };
+                slotContainer.appendChild(btn);
+            });
+        }
+    </script>
 </body>
 </html>
