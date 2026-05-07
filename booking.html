@@ -7,29 +7,47 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Inter:wght@200;300;400;600&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #050505; color: white; }
+        :root { --luxury-red: #e30613; }
+        body { font-family: 'Inter', sans-serif; background-color: #050505; color: white; scroll-behavior: smooth; }
         .font-serif { font-family: 'Playfair Display', serif; }
+        #mobile-menu { transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0); transform: translateX(100%); }
+        #mobile-menu.active { transform: translateX(0); }
     </style>
 </head>
-<body class="pt-32 px-6">
-    <nav class="fixed top-0 w-full z-50 flex justify-between items-center px-6 py-8 bg-black/80 backdrop-blur-md">
-        <div class="text-xl font-light tracking-[0.4em]"><a href="index.html">IT'S <span class="text-[#e30613] font-bold">IN</span></a></div>
+<body class="pt-32">
+
+    <nav class="fixed top-0 w-full z-[100] flex justify-between items-center px-6 md:px-20 py-8 bg-black/60 backdrop-blur-md border-b border-white/5">
+        <div class="text-2xl font-light tracking-[0.4em] cursor-pointer"><a href="index.html">IT'S <span class="text-[#e30613] font-bold">IN</span></a></div>
+        <div class="hidden md:flex space-x-12 uppercase text-[10px] tracking-[0.3em]">
+            <a href="index.html" class="hover:text-[#e30613]">Home</a>
+            <a href="leistungen.html" class="hover:text-[#e30613]">Leistungen</a>
+            <a href="team.html" class="hover:text-[#e30613]">Team</a>
+            <a href="kontakt.html" class="hover:text-[#e30613]">Kontakt</a>
+            <a href="booking.html" class="text-[#e30613]">Booking</a>
+        </div>
+        <button class="md:hidden flex flex-col space-y-1.5 z-[110]" onclick="document.getElementById('mobile-menu').classList.toggle('active')">
+            <div class="w-6 h-[1px] bg-white"></div><div class="w-6 h-[1px] bg-[#e30613]"></div><div class="w-6 h-[1px] bg-white"></div>
+        </button>
     </nav>
 
-    <div class="max-w-2xl mx-auto bg-white/5 p-8 md:p-12 border border-white/10 rounded-lg">
+    <div id="mobile-menu" class="fixed inset-0 bg-[#050505] z-[105] flex flex-col items-center justify-center space-y-10 text-2xl font-serif italic">
+        <a href="index.html">Home</a>
+        <a href="leistungen.html">Leistungen</a>
+        <a href="team.html">Team</a>
+        <a href="kontakt.html">Kontakt</a>
+        <a href="booking.html" class="text-[#e30613]">Booking</a>
+        <button onclick="document.getElementById('mobile-menu').classList.remove('active')" class="mt-10 text-xs uppercase tracking-widest border border-white/20 px-8 py-3">Schließen</button>
+    </div>
+
+    <div class="max-w-2xl mx-auto bg-white/5 p-8 md:p-12 border border-white/10 rounded-lg mt-10">
         <h2 class="text-4xl font-serif italic mb-12 text-center text-[#e30613]">Reservierung</h2>
-        
-        <label class="text-[10px] uppercase tracking-widest text-white/40 mb-2 block">Meister auswählen</label>
         <select class="w-full bg-transparent border-b border-white/20 py-4 mb-12 outline-none text-lg">
             <option>Arkadius Wilhelm</option>
             <option>Gilberto Payan</option>
             <option>Jens Reineccius</option>
         </select>
-
-        <label class="text-[10px] uppercase tracking-widest text-white/40 mb-6 block">Zeit wählen (30 Min. Takt)</label>
         <div class="grid grid-cols-3 md:grid-cols-4 gap-3 mb-12" id="time-slots"></div>
-        
-        <button class="w-full bg-[#e30613] py-5 uppercase text-[10px] tracking-[0.4em] font-bold hover:bg-white hover:text-black transition">Termin Bestätigen</button>
+        <button class="w-full bg-[#e30613] py-5 uppercase text-[10px] tracking-[0.4em] font-bold">Termin Bestätigen</button>
     </div>
 
     <script>
@@ -37,11 +55,11 @@
         for(let h=9; h<18; h++) {
             ['00', '30'].forEach(m => {
                 const b = document.createElement('button');
-                b.className = "border border-white/10 py-3 text-xs hover:border-[#e30613] transition rounded-sm";
+                b.className = "border border-white/10 py-3 text-xs hover:border-[#e30613] transition";
                 b.innerText = `${h}:${m}`;
                 b.onclick = function() { 
-                    document.querySelectorAll('#time-slots button').forEach(x => x.classList.remove('bg-[#e30613]', 'border-[#e30613]'));
-                    this.classList.add('bg-[#e30613]', 'border-[#e30613]'); 
+                    document.querySelectorAll('#time-slots button').forEach(x => x.classList.remove('bg-[#e30613]'));
+                    this.classList.add('bg-[#e30613]'); 
                 };
                 slots.appendChild(b);
             });
