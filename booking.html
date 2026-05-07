@@ -1,27 +1,51 @@
-<body class="bg-[#050505] text-white pt-40 px-6">
-    <div class="max-w-2xl mx-auto bg-white/5 p-12 border border-white/10 rounded-lg">
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking | IT'S IN</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Inter:wght@200;300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #050505; color: white; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+    </style>
+</head>
+<body class="pt-32 px-6">
+    <nav class="fixed top-0 w-full z-50 flex justify-between items-center px-6 py-8 bg-black/80 backdrop-blur-md">
+        <div class="text-xl font-light tracking-[0.4em]"><a href="index.html">IT'S <span class="text-[#e30613] font-bold">IN</span></a></div>
+    </nav>
+
+    <div class="max-w-2xl mx-auto bg-white/5 p-8 md:p-12 border border-white/10 rounded-lg">
         <h2 class="text-4xl font-serif italic mb-12 text-center text-[#e30613]">Reservierung</h2>
+        
+        <label class="text-[10px] uppercase tracking-widest text-white/40 mb-2 block">Meister auswählen</label>
         <select class="w-full bg-transparent border-b border-white/20 py-4 mb-12 outline-none text-lg">
             <option>Arkadius Wilhelm</option>
             <option>Gilberto Payan</option>
             <option>Jens Reineccius</option>
         </select>
-        <div class="grid grid-cols-3 md:grid-cols-4 gap-4 mb-12" id="time-slots"></div>
+
+        <label class="text-[10px] uppercase tracking-widest text-white/40 mb-6 block">Zeit wählen (30 Min. Takt)</label>
+        <div class="grid grid-cols-3 md:grid-cols-4 gap-3 mb-12" id="time-slots"></div>
+        
         <button class="w-full bg-[#e30613] py-5 uppercase text-[10px] tracking-[0.4em] font-bold hover:bg-white hover:text-black transition">Termin Bestätigen</button>
     </div>
+
     <script>
         const slots = document.getElementById('time-slots');
         for(let h=9; h<18; h++) {
             ['00', '30'].forEach(m => {
                 const b = document.createElement('button');
-                b.className = "border border-white/10 py-3 text-xs hover:border-[#e30613] transition";
+                b.className = "border border-white/10 py-3 text-xs hover:border-[#e30613] transition rounded-sm";
                 b.innerText = `${h}:${m}`;
                 b.onclick = function() { 
-                    document.querySelectorAll('#time-slots button').forEach(x => x.classList.remove('bg-[#e30613]'));
-                    this.classList.add('bg-[#e30613]'); 
+                    document.querySelectorAll('#time-slots button').forEach(x => x.classList.remove('bg-[#e30613]', 'border-[#e30613]'));
+                    this.classList.add('bg-[#e30613]', 'border-[#e30613]'); 
                 };
                 slots.appendChild(b);
             });
         }
     </script>
 </body>
+</html>
