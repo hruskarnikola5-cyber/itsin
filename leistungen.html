@@ -1,35 +1,136 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leistungen | IT'S IN MEISTERFRISEURE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Inter:wght@200;300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --luxury-red: #e30613; }
+        body { font-family: 'Inter', sans-serif; background-color: #050505; color: white; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        
+        .service-row { 
+            display: flex; justify-content: space-between; align-items: flex-end; 
+            border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 1.5rem;
+            margin-bottom: 2rem; transition: 0.4s;
+        }
+        .service-row:hover { border-bottom: 1px solid var(--luxury-red); }
+        
+        #mobile-menu { transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0); transform: translateX(100%); }
+        #mobile-menu.active { transform: translateX(0); }
+    </style>
+</head>
+<body class="pt-32 md:pt-40">
 
-<body class="bg-[#050505] text-white pt-32">
-    <div class="max-w-7xl mx-auto px-12">
-        <h2 class="text-[#e30613] tracking-[0.5em] text-xs uppercase mb-4">Portfolio</h2>
-        <h1 class="text-6xl font-serif mb-24 italic">Dienstleistungen</h1>
-
-        <div class="grid md:grid-cols-2 gap-24">
-            <div>
-                <h3 class="text-xs uppercase tracking-[0.3em] text-white/40 mb-12 border-b border-white/10 pb-4">Damen / Women</h3>
-                <div class="space-y-12">
-                    <div class="group cursor-pointer">
-                        <div class="flex justify-between items-end mb-2">
-                            <span class="text-2xl font-serif group-hover:text-[#e30613] transition">Cut & Style Signature</span>
-                            <span class="text-xl font-light">95€</span>
-                        </div>
-                        <p class="text-white/40 text-sm font-light">Inkl. Beratung, Haarwäsche, Kopfmassage und High-End Finish.</p>
-                    </div>
-                    <!-- Mehr Items hier -->
-                </div>
-            </div>
-            <div>
-                <h3 class="text-xs uppercase tracking-[0.3em] text-white/40 mb-12 border-b border-white/10 pb-4">Herren / Men</h3>
-                <div class="space-y-12">
-                    <div class="group cursor-pointer">
-                        <div class="flex justify-between items-end mb-2">
-                            <span class="text-2xl font-serif group-hover:text-[#e30613] transition">Meisterhaarschnitt</span>
-                            <span class="text-xl font-light">45€</span>
-                        </div>
-                        <p class="text-white/40 text-sm font-light">Präzisionsschnitt durch Arkadius C. Wilhelm oder Gilberto S. Payan.</p>
-                    </div>
-                </div>
-            </div>
+    <nav class="fixed top-0 w-full z-[100] flex justify-between items-center px-6 md:px-20 py-8 bg-black/80 backdrop-blur-md">
+        <div class="text-2xl font-light tracking-[0.4em]"><a href="index.html">IT'S <span class="text-[#e30613] font-bold">IN</span></a></div>
+        <div class="hidden md:flex space-x-12 uppercase text-[10px] tracking-[0.3em]">
+            <a href="index.html" class="hover:text-[#e30613]">Home</a>
+            <a href="leistungen.html" class="text-[#e30613]">Leistungen</a>
+            <a href="team.html" class="hover:text-[#e30613]">Team</a>
+            <a href="kontakt.html" class="hover:text-[#e30613]">Kontakt</a>
+            <a href="booking.html" class="hover:text-[#e30613]">Booking</a>
         </div>
+        <button class="md:hidden flex flex-col space-y-1.5 z-[110]" onclick="document.getElementById('mobile-menu').classList.toggle('active')">
+            <div class="w-6 h-[1px] bg-white"></div><div class="w-6 h-[1px] bg-[#e30613]"></div><div class="w-6 h-[1px] bg-white"></div>
+        </button>
+    </nav>
+
+    <div id="mobile-menu" class="fixed inset-0 bg-[#050505] z-[105] flex flex-col items-center justify-center space-y-10 text-2xl font-serif italic text-white">
+        <a href="index.html">Home</a>
+        <a href="leistungen.html" class="text-[#e30613]">Leistungen</a>
+        <a href="team.html">Team</a>
+        <a href="kontakt.html">Kontakt</a>
+        <a href="booking.html">Booking</a>
+        <button onclick="document.getElementById('mobile-menu').classList.remove('active')" class="mt-10 text-xs uppercase tracking-widest border border-white/20 px-8 py-3">Schließen</button>
     </div>
+
+    <main class="max-w-6xl mx-auto px-6 pb-20">
+        <header class="text-center mb-32">
+            <h2 class="text-[#e30613] tracking-[0.5em] text-[10px] uppercase mb-4">Portfolio</h2>
+            <h1 class="text-5xl md:text-7xl font-serif italic">Preise & Services</h1>
+        </header>
+
+        <div class="grid md:grid-cols-2 gap-x-32">
+            <section class="mb-20">
+                <h3 class="text-xs tracking-[0.3em] uppercase text-white/40 mb-12 border-l-2 border-[#e30613] pl-4">Damen / Women</h3>
+                
+                <div class="service-row">
+                    <div>
+                        <p class="text-xl font-serif italic">Cut & Signature Finish</p>
+                        <p class="text-[10px] text-white/30 uppercase mt-2">Wäsche, Schnitt, Styling</p>
+                    </div>
+                    <span class="text-lg font-light">ab 85</span>
+                </div>
+
+                <div class="service-row">
+                    <div>
+                        <p class="text-xl font-serif italic">Coloration Couture</p>
+                        <p class="text-[10px] text-white/30 uppercase mt-2">Ansatz oder Ganzfärbung</p>
+                    </div>
+                    <span class="text-lg font-light">ab 75</span>
+                </div>
+
+                <div class="service-row">
+                    <div>
+                        <p class="text-xl font-serif italic">Balayage / Painting</p>
+                        <p class="text-[10px] text-white/30 uppercase mt-2">Individuelle Freihandtechnik</p>
+                    </div>
+                    <span class="text-lg font-light">ab 160</span>
+                </div>
+
+                <div class="service-row">
+                    <div>
+                        <p class="text-xl font-serif italic">Glossing / Tönung</p>
+                        <p class="text-[10px] text-white/30 uppercase mt-2">Veredelung & Glanz</p>
+                    </div>
+                    <span class="text-lg font-light">ab 45</span>
+                </div>
+            </section>
+
+            <section class="mb-20">
+                <h3 class="text-xs tracking-[0.3em] uppercase text-white/40 mb-12 border-l-2 border-[#e30613] pl-4">Herren / Men</h3>
+
+                <div class="service-row">
+                    <div>
+                        <p class="text-xl font-serif italic">Master Cut</p>
+                        <p class="text-[10px] text-white/30 uppercase mt-2">Präzisionshaarschnitt & Massage</p>
+                    </div>
+                    <span class="text-lg font-light">ab 45</span>
+                </div>
+
+                <div class="service-row">
+                    <div>
+                        <p class="text-xl font-serif italic">Barber Service</p>
+                        <p class="text-[10px] text-white/30 uppercase mt-2">Bartpflege & Kontur</p>
+                    </div>
+                    <span class="text-lg font-light">ab 25</span>
+                </div>
+
+                <div class="service-row">
+                    <div>
+                        <p class="text-xl font-serif italic">Business Cut</p>
+                        <p class="text-[10px] text-white/30 uppercase mt-2">Trockenschnitt / Maschine</p>
+                    </div>
+                    <span class="text-lg font-light">ab 35</span>
+                </div>
+            </section>
+        </div>
+
+        <div class="mt-20 p-10 border border-white/5 bg-white/[0.02] text-center">
+            <p class="text-white/40 text-xs tracking-widest leading-loose">
+                Alle Preise verstehen sich in Euro inkl. MwSt. <br>
+                Der endgültige Preis richtet sich nach Zeitaufwand und Materialverbrauch. <br>
+                <span class="text-[#e30613]">Termine nach Vereinbarung.</span>
+            </p>
+        </div>
+    </main>
+
+    <footer class="py-10 text-center opacity-20 text-[8px] tracking-[0.4em] uppercase">
+        &copy; 2026 IT'S IN MEISTERFRISEURE.
+    </footer>
+
 </body>
+</html>
