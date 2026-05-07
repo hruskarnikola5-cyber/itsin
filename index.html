@@ -8,182 +8,52 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Inter:wght@200;300;400;600&display=swap" rel="stylesheet">
     <style>
         :root { --luxury-red: #e30613; }
-        body { font-family: 'Inter', sans-serif; background-color: #050505; color: white; scroll-behavior: smooth; overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; background-color: #050505; color: white; scroll-behavior: smooth; }
         .font-serif { font-family: 'Playfair Display', serif; }
-        
         .hero-bg { 
             background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.9)), 
                         url('https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=2069&auto=format&fit=crop');
             background-size: cover; background-position: center; height: 100vh;
         }
-
-        /* Mobile Menu Animation */
-        #mobile-menu {
-            transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
-            transform: translateX(100%);
-        }
+        #mobile-menu { transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0); transform: translateX(100%); }
         #mobile-menu.active { transform: translateX(0); }
-
-        .nav-link { letter-spacing: 0.3em; font-size: 0.7rem; text-transform: uppercase; transition: 0.4s; cursor: pointer; }
-        .nav-link:hover { color: var(--luxury-red); }
-
-        .section-container { display: none; }
-        .section-container.active { display: block; }
     </style>
 </head>
 <body>
-
-    <nav class="fixed w-full z-[100] flex justify-between items-center px-6 md:px-20 py-8 bg-black/60 backdrop-blur-md border-b border-white/5">
-        <div class="text-2xl font-light tracking-[0.4em] cursor-pointer" onclick="showPage('home')">
-            IT'S <span class="text-[#e30613] font-bold">IN</span>
+    <nav class="fixed w-full z-[100] flex justify-between items-center px-6 md:px-20 py-8 bg-black/60 backdrop-blur-md">
+        <div class="text-2xl font-light tracking-[0.4em]"><a href="index.html">IT'S <span class="text-[#e30613] font-bold">IN</span></a></div>
+        <div class="hidden md:flex space-x-12 uppercase text-[10px] tracking-[0.3em]">
+            <a href="leistungen.html" class="hover:text-[#e30613]">Leistungen</a>
+            <a href="team.html" class="hover:text-[#e30613]">Team</a>
+            <a href="kontakt.html" class="hover:text-[#e30613]">Kontakt</a>
+            <a href="booking.html" class="text-[#e30613]">Booking</a>
         </div>
-
-        <div class="hidden md:flex space-x-12">
-            <span onclick="showPage('services')" class="nav-link">Leistungen</span>
-            <span onclick="showPage('team')" class="nav-link">Team</span>
-            <span onclick="showPage('contact')" class="nav-link">Kontakt</span>
-            <span onclick="showPage('booking')" class="nav-link text-[#e30613]">Booking</span>
-        </div>
-
-        <button class="md:hidden flex flex-col space-y-1.5 z-[110]" onclick="toggleMenu()">
-            <div class="w-6 h-[1px] bg-white"></div>
-            <div class="w-6 h-[1px] bg-[#e30613]"></div>
-            <div class="w-6 h-[1px] bg-white"></div>
+        <button class="md:hidden flex flex-col space-y-1.5 z-[110]" onclick="document.getElementById('mobile-menu').classList.toggle('active')">
+            <div class="w-6 h-[1px] bg-white"></div><div class="w-6 h-[1px] bg-[#e30613]"></div><div class="w-6 h-[1px] bg-white"></div>
         </button>
     </nav>
 
-    <div id="mobile-menu" class="fixed inset-0 bg-[#050505] z-[105] flex flex-col items-center justify-center space-y-10 text-center">
-        <span onclick="closeAndShow('services')" class="text-2xl font-serif italic">Leistungen</span>
-        <span onclick="closeAndShow('team')" class="text-2xl font-serif italic">Team</span>
-        <span onclick="closeAndShow('contact')" class="text-2xl font-serif italic">Kontakt</span>
-        <span onclick="closeAndShow('booking')" class="text-2xl font-serif italic text-[#e30613]">Booking</span>
-        <button onclick="toggleMenu()" class="mt-10 text-[10px] tracking-[0.4em] uppercase border border-white/20 px-8 py-3">Schließen</button>
+    <div id="mobile-menu" class="fixed inset-0 bg-[#050505] z-[105] flex flex-col items-center justify-center space-y-10 text-2xl font-serif italic">
+        <a href="index.html" class="text-[#e30613]">Home</a>
+        <a href="leistungen.html">Leistungen</a>
+        <a href="team.html">Team</a>
+        <a href="kontakt.html">Kontakt</a>
+        <a href="booking.html" class="text-[#e30613]">Booking</a>
+        <button onclick="document.getElementById('mobile-menu').classList.remove('active')" class="mt-10 text-xs uppercase tracking-widest border border-white/20 px-8 py-3">Schließen</button>
     </div>
 
-    <div id="home" class="section-container active">
-        <section class="hero-bg flex items-center justify-center text-center">
-            <div class="max-w-5xl px-6">
-                <h1 class="text-6xl md:text-[9rem] font-serif italic font-light mb-8 leading-none">Mastery.</h1>
-                <p class="text-[10px] uppercase tracking-[0.8em] mb-12 text-white/40">Wolfsburgs erste Adresse für Exzellenz</p>
-                <div class="h-24 w-[1px] bg-[#e30613] mx-auto animate-bounce"></div>
-            </div>
-        </section>
-
-        <section class="py-32 px-10 border-t border-white/5">
-            <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-[10px] uppercase tracking-[0.5em] text-[#e30613] mb-6">Das Portfolio</h2>
-                <h3 class="text-4xl md:text-6xl font-serif italic mb-10">Schnitt, Farbe & Präzision</h3>
-                <p class="text-white/40 font-light leading-relaxed mb-12 max-w-xl mx-auto">Von klassischem Meisterschnitt bis hin zu High-End Colorationen. Erfahren Sie mehr über unsere Philosophie des Handwerks.</p>
-                <button onclick="showPage('services')" class="text-[10px] uppercase tracking-[0.3em] border-b border-[#e30613] pb-2 hover:text-[#e30613] transition">Alle Leistungen ansehen</button>
-            </div>
-        </section>
-
-        <section class="py-32 px-10 bg-[#080808]">
-            <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-20">
-                <div class="w-full md:w-1/2 h-[60vh] bg-[url('https://images.unsplash.com/photo-1503910321442-7fce7d3a1b5a?q=80&w=1974&auto=format&fit=crop')] bg-cover bg-center grayscale"></div>
-                <div class="w-full md:w-1/2">
-                    <h2 class="text-[10px] uppercase tracking-[0.5em] text-[#e30613] mb-6">Meisterfriseure</h2>
-                    <h3 class="text-4xl font-serif italic mb-8">Hinter dem Handwerk</h3>
-                    <p class="text-white/40 font-light mb-10 leading-relaxed">Arkadius Wilhelm und sein Team vereinen jahrzehntelange Erfahrung mit dem Gespür für zeitlose Eleganz.</p>
-                    <button onclick="showPage('team')" class="text-[10px] uppercase tracking-[0.3em] border-b border-[#e30613] pb-2">Das Team kennenlernen</button>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div id="services" class="section-container py-40 px-10">
-        <div class="max-w-4xl mx-auto">
-            <h1 class="text-5xl font-serif italic mb-20 text-center">Leistungen</h1>
-            <div class="space-y-12">
-                <div class="flex justify-between border-b border-white/10 pb-6">
-                    <span>Meisterschnitt Damen</span> <span>ab 85€</span>
-                </div>
-                <div class="flex justify-between border-b border-white/10 pb-6">
-                    <span>Meisterschnitt Herren</span> <span>ab 45€</span>
-                </div>
-                <div class="flex justify-between border-b border-white/10 pb-6">
-                    <span>Couture Color / Balayage</span> <span>ab 140€</span>
-                </div>
-            </div>
+    <header class="hero-bg flex items-center justify-center text-center">
+        <div class="max-w-5xl px-6">
+            <h1 class="text-6xl md:text-[9rem] font-serif italic font-light mb-8 leading-none">Mastery.</h1>
+            <p class="text-[10px] uppercase tracking-[0.8em] mb-12 text-white/40">Wolfsburgs erste Adresse für Exzellenz</p>
+            <div class="h-24 w-[1px] bg-[#e30613] mx-auto animate-bounce"></div>
         </div>
-    </div>
+    </header>
 
-    <div id="team" class="section-container py-40 px-10">
-        <h1 class="text-5xl font-serif italic text-center mb-20">Das Team</h1>
-        <div class="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
-            <div class="text-center">
-                <div class="h-96 bg-neutral-900 mb-6 border border-white/5 grayscale"></div>
-                <h3 class="text-xl font-serif italic">Arkadius Wilhelm</h3>
-                <p class="text-[#e30613] text-[9px] uppercase tracking-widest mt-2">Founder</p>
-            </div>
-            <div class="text-center">
-                <div class="h-96 bg-neutral-800 mb-6 border border-white/5 grayscale"></div>
-                <h3 class="text-xl font-serif italic">Jens Reineccius</h3>
-                <p class="text-[#e30613] text-[9px] uppercase tracking-widest mt-2">Manager</p>
-            </div>
-            <div class="text-center">
-                <div class="h-96 bg-neutral-900 mb-6 border border-white/5 grayscale"></div>
-                <h3 class="text-xl font-serif italic">Gilberto S. Payan</h3>
-                <p class="text-[#e30613] text-[9px] uppercase tracking-widest mt-2">Master Stylist</p>
-            </div>
-        </div>
-    </div>
-
-    <div id="booking" class="section-container py-40 px-6">
-        <div class="max-w-2xl mx-auto bg-white/5 p-10 border border-white/10">
-            <h2 class="text-3xl font-serif italic mb-10 text-center text-[#e30613]">Terminanfrage</h2>
-            <select class="w-full bg-transparent border-b border-white/20 py-4 mb-10 outline-none">
-                <option>Arkadius Wilhelm</option>
-                <option>Jens Reineccius</option>
-                <option>Gilberto Payan</option>
-            </select>
-            <div class="grid grid-cols-4 gap-4 mb-10" id="slots"></div>
-            <button class="w-full bg-[#e30613] py-4 uppercase text-[10px] tracking-widest font-bold">Jetzt Reservieren</button>
-        </div>
-    </div>
-
-    <div id="contact" class="section-container py-40 px-10">
-        <div class="max-w-4xl mx-auto text-center">
-            <h1 class="text-5xl font-serif italic mb-10">Atelier</h1>
-            <p class="text-white/40 mb-10">Klieverhagen 54, 38440 Wolfsburg</p>
-            <p class="text-2xl font-light">T. 05361 272829</p>
-        </div>
-    </div>
-
-    <footer class="py-20 text-center opacity-20 text-[9px] tracking-[0.5em] uppercase">
-        &copy; 2026 IT'S IN MEISTERFRISEURE.
-    </footer>
-
-    <script>
-        function toggleMenu() {
-            document.getElementById('mobile-menu').classList.toggle('active');
-        }
-
-        function closeAndShow(pageId) {
-            toggleMenu();
-            showPage(pageId);
-        }
-
-        function showPage(pageId) {
-            document.querySelectorAll('.section-container').forEach(s => s.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
-            window.scrollTo(0,0);
-        }
-
-        // Slots Generierung
-        const container = document.getElementById('slots');
-        for(let i=9; i<15; i++) {
-            const b = document.createElement('button');
-            b.className = "border border-white/10 py-2 text-[10px]";
-            b.innerText = i + ":00";
-            b.onclick = function() {
-                document.querySelectorAll('#slots button').forEach(x => x.classList.remove('bg-[#e30613]'));
-                this.classList.add('bg-[#e30613]');
-            };
-            container.appendChild(b);
-        }
-    </script>
+    <section class="py-40 px-10 border-t border-white/5 text-center">
+        <h2 class="text-4xl md:text-6xl font-serif italic mb-10">Schnitt & Präzision</h2>
+        <p class="max-w-2xl mx-auto text-white/40 font-light leading-relaxed mb-10">Erfahren Sie mehr über unsere Philosophie des Handwerks und unsere exklusiven Services.</p>
+        <a href="leistungen.html" class="text-[10px] uppercase tracking-[0.4em] border-b border-[#e30613] pb-2">Entdecken</a>
+    </section>
 </body>
 </html>
-
-        
