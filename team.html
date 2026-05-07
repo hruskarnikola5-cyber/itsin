@@ -1,12 +1,106 @@
-<body class="bg-[#050505] text-white pt-40 px-6">
-    <h1 class="text-5xl font-serif italic text-center mb-24">Das Team</h1>
-    <div class="grid md:grid-cols-3 gap-12 max-w-7xl mx-auto">
-        <a href="arkadius.html" class="group block text-center">
-            <div class="h-[60vh] bg-neutral-900 mb-8 border border-white/5 grayscale group-hover:grayscale-0 transition-all duration-700 relative overflow-hidden">
-                <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent"></div>
-            </div>
-            <h3 class="text-2xl font-serif italic">Arkadius Wilhelm</h3>
-            <p class="text-[#e30613] text-[10px] tracking-widest uppercase mt-3">Founder & Master</p>
-        </a>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team | IT'S IN MEISTERFRISEURE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Inter:wght@200;300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --luxury-red: #e30613; }
+        body { font-family: 'Inter', sans-serif; background-color: #050505; color: white; overflow-x: hidden; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        
+        /* Mobile Menu Animation */
+        #mobile-menu {
+            transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+            transform: translateX(100%);
+        }
+        #mobile-menu.active { transform: translateX(0); }
+
+        .team-card:hover .team-img { transform: scale(1.05); filter: grayscale(0); }
+        .team-img { transition: all 1.2s cubic-bezier(0.2, 1, 0.3, 1); filter: grayscale(100%); }
+    </style>
+</head>
+<body>
+
+    <nav class="fixed w-full z-[100] flex justify-between items-center px-6 md:px-20 py-8 bg-black/60 backdrop-blur-md border-b border-white/5">
+        <div class="text-2xl font-light tracking-[0.4em] cursor-pointer">
+            <a href="index.html">IT'S <span class="text-[#e30613] font-bold">IN</span></a>
         </div>
+
+        <div class="hidden md:flex space-x-12 uppercase text-[10px] tracking-[0.3em]">
+            <a href="index.html" class="hover:text-[#e30613] transition">Home</a>
+            <a href="leistungen.html" class="hover:text-[#e30613] transition">Leistungen</a>
+            <a href="team.html" class="text-[#e30613]">Team</a>
+            <a href="kontakt.html" class="hover:text-[#e30613] transition">Kontakt</a>
+            <a href="booking.html" class="hover:text-[#e30613] transition border-b border-[#e30613] pb-1">Booking</a>
+        </div>
+
+        <button class="md:hidden flex flex-col space-y-1.5 z-[110]" onclick="document.getElementById('mobile-menu').classList.toggle('active')">
+            <div class="w-6 h-[1px] bg-white"></div>
+            <div class="w-6 h-[1px] bg-[#e30613]"></div>
+            <div class="w-6 h-[1px] bg-white"></div>
+        </button>
+    </nav>
+
+    <div id="mobile-menu" class="fixed inset-0 bg-[#050505] z-[105] flex flex-col items-center justify-center space-y-10 text-center">
+        <a href="index.html" class="text-2xl font-serif italic">Home</a>
+        <a href="leistungen.html" class="text-2xl font-serif italic">Leistungen</a>
+        <a href="team.html" class="text-2xl font-serif italic text-[#e30613]">Team</a>
+        <a href="kontakt.html" class="text-2xl font-serif italic">Kontakt</a>
+        <a href="booking.html" class="text-2xl font-serif italic text-[#e30613]">Booking</a>
+        <button onclick="document.getElementById('mobile-menu').classList.remove('active')" class="mt-10 text-[10px] tracking-[0.4em] uppercase border border-white/20 px-8 py-3">Schließen</button>
+    </div>
+
+    <main class="pt-40 pb-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <header class="text-center mb-32">
+                <h2 class="text-[#e30613] tracking-[0.6em] text-[10px] uppercase mb-6 font-semibold">The Artisans</h2>
+                <h1 class="text-5xl md:text-7xl font-serif italic mb-8">Unsere Meister</h1>
+                <p class="max-w-xl mx-auto text-white/40 font-light leading-relaxed">Klicken Sie auf ein Profil, um mehr über die Motivation und die Arbeiten unserer Stylisten zu erfahren.</p>
+            </header>
+
+            <div class="grid md:grid-cols-3 gap-12 lg:gap-20">
+                <a href="arkadius.html" class="team-card group block">
+                    <div class="aspect-[3/4] overflow-hidden bg-neutral-900 border border-white/5 mb-8">
+                        <div class="team-img w-full h-full bg-[url('https://images.unsplash.com/photo-1503910321442-7fce7d3a1b5a?q=80&w=1974&auto=format&fit=crop')] bg-cover bg-center"></div>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-2xl font-serif italic mb-2">Arkadius Wilhelm</h3>
+                        <p class="text-[#e30613] text-[10px] tracking-[0.3em] uppercase">Inhaber & Friseurmeister</p>
+                        <span class="inline-block mt-6 text-[9px] uppercase tracking-[0.2em] border-b border-white/10 pb-1 opacity-0 group-hover:opacity-100 transition-opacity">Profil ansehen</span>
+                    </div>
+                </a>
+
+                <a href="jens.html" class="team-card group block">
+                    <div class="aspect-[3/4] overflow-hidden bg-neutral-900 border border-white/5 mb-8">
+                        <div class="team-img w-full h-full bg-neutral-800 flex items-center justify-center text-white/5 uppercase tracking-widest">Portrait Jens</div>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-2xl font-serif italic mb-2">Jens Reineccius</h3>
+                        <p class="text-[#e30613] text-[10px] tracking-[0.3em] uppercase">Salon Manager</p>
+                        <span class="inline-block mt-6 text-[9px] uppercase tracking-[0.2em] border-b border-white/10 pb-1 opacity-0 group-hover:opacity-100 transition-opacity">Profil ansehen</span>
+                    </div>
+                </a>
+
+                <a href="gilberto.html" class="team-card group block">
+                    <div class="aspect-[3/4] overflow-hidden bg-neutral-900 border border-white/5 mb-8">
+                        <div class="team-img w-full h-full bg-neutral-800 flex items-center justify-center text-white/5 uppercase tracking-widest">Portrait Gilberto</div>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-2xl font-serif italic mb-2">Gilberto S. Payan</h3>
+                        <p class="text-[#e30613] text-[10px] tracking-[0.3em] uppercase">Master Stylist</p>
+                        <span class="inline-block mt-6 text-[9px] uppercase tracking-[0.2em] border-b border-white/10 pb-1 opacity-0 group-hover:opacity-100 transition-opacity">Profil ansehen</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-20 text-center opacity-20 text-[9px] tracking-[0.5em] uppercase">
+        &copy; 2026 IT'S IN MEISTERFRISEURE.
+    </footer>
+
 </body>
+</html>
