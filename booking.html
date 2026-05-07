@@ -1,0 +1,27 @@
+<body class="bg-[#050505] text-white pt-40 px-6">
+    <div class="max-w-2xl mx-auto bg-white/5 p-12 border border-white/10 rounded-lg">
+        <h2 class="text-4xl font-serif italic mb-12 text-center text-[#e30613]">Reservierung</h2>
+        <select class="w-full bg-transparent border-b border-white/20 py-4 mb-12 outline-none text-lg">
+            <option>Arkadius Wilhelm</option>
+            <option>Gilberto Payan</option>
+            <option>Jens Reineccius</option>
+        </select>
+        <div class="grid grid-cols-3 md:grid-cols-4 gap-4 mb-12" id="time-slots"></div>
+        <button class="w-full bg-[#e30613] py-5 uppercase text-[10px] tracking-[0.4em] font-bold hover:bg-white hover:text-black transition">Termin Bestätigen</button>
+    </div>
+    <script>
+        const slots = document.getElementById('time-slots');
+        for(let h=9; h<18; h++) {
+            ['00', '30'].forEach(m => {
+                const b = document.createElement('button');
+                b.className = "border border-white/10 py-3 text-xs hover:border-[#e30613] transition";
+                b.innerText = `${h}:${m}`;
+                b.onclick = function() { 
+                    document.querySelectorAll('#time-slots button').forEach(x => x.classList.remove('bg-[#e30613]'));
+                    this.classList.add('bg-[#e30613]'); 
+                };
+                slots.appendChild(b);
+            });
+        }
+    </script>
+</body>
