@@ -1,19 +1,46 @@
-<body class="bg-[#050505] text-white pt-40 px-10">
-    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-32">
-        <div>
-            <h1 class="text-7xl font-serif italic mb-12">Das Atelier</h1>
-            <div class="space-y-12 text-lg font-light text-white/50">
-                <p>Klieverhagen 54<br>38440 Wolfsburg</p>
-                <div class="h-[1px] w-20 bg-[#e30613]"></div>
-                <p>T. 05361 272829<br>E. hello@itsin-meisterfriseure.de</p>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakt | IT'S IN</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Inter:wght@200;300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #050505; color: white; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+    </style>
+</head>
+<body class="pt-32 px-6">
+    <nav class="fixed top-0 w-full z-50 flex justify-between items-center px-6 py-8 bg-black/80 backdrop-blur-md">
+        <div class="text-xl font-light tracking-[0.4em]"><a href="index.html">IT'S <span class="text-[#e30613] font-bold">IN</span></a></div>
+    </nav>
+
+    <div class="max-w-4xl mx-auto text-center py-10">
+        <h1 class="text-5xl md:text-7xl font-serif italic mb-16">Das Atelier</h1>
+        
+        <div class="grid md:grid-cols-2 gap-16 text-left">
+            <div class="space-y-10 border-l border-[#e30613] pl-8">
+                <div>
+                    <h3 class="text-[10px] uppercase tracking-[0.3em] text-white/40 mb-2">Standort</h3>
+                    <p class="text-xl font-light">Klieverhagen 54<br>38440 Wolfsburg</p>
+                </div>
+                <div>
+                    <h3 class="text-[10px] uppercase tracking-[0.3em] text-white/40 mb-2">Direktkontakt</h3>
+                    <p class="text-xl font-light">T. 05361 272829</p>
+                    <p class="text-sm text-[#e30613] mt-1 italic">hello@itsin-meisterfriseure.de</p>
+                </div>
             </div>
-        </div>
-        <div class="bg-white/5 p-12 border border-white/10">
-            <h3 class="text-xs tracking-[0.4em] uppercase mb-10 text-[#e30613]">Öffnungszeiten</h3>
-            <div class="space-y-4 text-sm tracking-widest">
-                <div class="flex justify-between"><span>Dienstag — Freitag</span><span>09:00 - 18:00</span></div>
-                <div class="flex justify-between border-b border-white/5 pb-4"><span>Samstag</span><span>08:00 - 14:00</span></div>
+
+            <div class="bg-white/5 p-10 border border-white/10 rounded-sm">
+                <h3 class="text-[10px] uppercase tracking-[0.3em] text-[#e30613] mb-6">Öffnungszeiten</h3>
+                <div class="space-y-4 font-light">
+                    <div class="flex justify-between border-b border-white/5 pb-2"><span>Di — Fr</span><span>09:00 - 18:00</span></div>
+                    <div class="flex justify-between border-b border-white/5 pb-2"><span>Samstag</span><span>08:00 - 14:00</span></div>
+                    <p class="text-[10px] text-white/30 pt-4 italic">Montags Ruhetag für kreative Phase.</p>
+                </div>
             </div>
         </div>
     </div>
 </body>
+</html>
