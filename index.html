@@ -8,201 +8,182 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Inter:wght@200;300;400;600&display=swap" rel="stylesheet">
     <style>
         :root { --luxury-red: #e30613; }
-        body { font-family: 'Inter', sans-serif; background-color: #050505; color: white; scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background-color: #050505; color: white; scroll-behavior: smooth; overflow-x: hidden; }
         .font-serif { font-family: 'Playfair Display', serif; }
         
-        /* Full-Screen Hero Background */
         .hero-bg { 
-            background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.8)), 
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.9)), 
                         url('https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=2069&auto=format&fit=crop');
             background-size: cover; background-position: center; height: 100vh;
         }
 
-        .nav-link { letter-spacing: 0.3em; font-size: 0.65rem; text-transform: uppercase; transition: 0.4s; cursor: pointer; }
+        /* Mobile Menu Animation */
+        #mobile-menu {
+            transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+            transform: translateX(100%);
+        }
+        #mobile-menu.active { transform: translateX(0); }
+
+        .nav-link { letter-spacing: 0.3em; font-size: 0.7rem; text-transform: uppercase; transition: 0.4s; cursor: pointer; }
         .nav-link:hover { color: var(--luxury-red); }
-        
-        .section-hidden { display: none; }
-        .section-active { display: block; animation: fadeIn 0.8s ease-in-out; }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        input, select, textarea { 
-            background: transparent !important; 
-            border-bottom: 1px solid rgba(255,255,255,0.1) !important; 
-            outline: none; transition: 0.4s; 
-        }
-        input:focus { border-bottom: 1px solid var(--luxury-red) !important; }
+        .section-container { display: none; }
+        .section-container.active { display: block; }
     </style>
 </head>
 <body>
 
-    <!-- NAVIGATION -->
-    <nav class="fixed w-full z-50 flex justify-between items-center px-8 md:px-20 py-10 bg-gradient-to-b from-black/80 to-transparent backdrop-blur-sm">
+    <nav class="fixed w-full z-[100] flex justify-between items-center px-6 md:px-20 py-8 bg-black/60 backdrop-blur-md border-b border-white/5">
         <div class="text-2xl font-light tracking-[0.4em] cursor-pointer" onclick="showPage('home')">
             IT'S <span class="text-[#e30613] font-bold">IN</span>
         </div>
+
         <div class="hidden md:flex space-x-12">
             <span onclick="showPage('services')" class="nav-link">Leistungen</span>
             <span onclick="showPage('team')" class="nav-link">Team</span>
             <span onclick="showPage('contact')" class="nav-link">Kontakt</span>
+            <span onclick="showPage('booking')" class="nav-link text-[#e30613]">Booking</span>
         </div>
-        <button onclick="showPage('booking')" class="text-[10px] uppercase tracking-[0.4em] border border-white/20 px-6 py-3 hover:bg-[#e30613] hover:border-[#e30613] transition-all">Booking</button>
+
+        <button class="md:hidden flex flex-col space-y-1.5 z-[110]" onclick="toggleMenu()">
+            <div class="w-6 h-[1px] bg-white"></div>
+            <div class="w-6 h-[1px] bg-[#e30613]"></div>
+            <div class="w-6 h-[1px] bg-white"></div>
+        </button>
     </nav>
 
-    <!-- 🏠 HOME -->
-    <main id="home" class="section-active">
+    <div id="mobile-menu" class="fixed inset-0 bg-[#050505] z-[105] flex flex-col items-center justify-center space-y-10 text-center">
+        <span onclick="closeAndShow('services')" class="text-2xl font-serif italic">Leistungen</span>
+        <span onclick="closeAndShow('team')" class="text-2xl font-serif italic">Team</span>
+        <span onclick="closeAndShow('contact')" class="text-2xl font-serif italic">Kontakt</span>
+        <span onclick="closeAndShow('booking')" class="text-2xl font-serif italic text-[#e30613]">Booking</span>
+        <button onclick="toggleMenu()" class="mt-10 text-[10px] tracking-[0.4em] uppercase border border-white/20 px-8 py-3">Schließen</button>
+    </div>
+
+    <div id="home" class="section-container active">
         <section class="hero-bg flex items-center justify-center text-center">
             <div class="max-w-5xl px-6">
-                <h2 class="text-[#e30613] tracking-[0.6em] text-[10px] uppercase mb-6 font-semibold">Exzellenz & Handwerk</h2>
-                <h1 class="text-6xl md:text-[10rem] font-serif italic font-light mb-8 opacity-95 leading-none">Mastery.</h1>
-                <p class="text-[10px] uppercase tracking-[0.8em] mb-12 text-white/40 italic">The art of perfection in Wolfsburg</p>
-                <div class="h-24 w-[1px] bg-gradient-to-b from-[#e30613] to-transparent mx-auto"></div>
+                <h1 class="text-6xl md:text-[9rem] font-serif italic font-light mb-8 leading-none">Mastery.</h1>
+                <p class="text-[10px] uppercase tracking-[0.8em] mb-12 text-white/40">Wolfsburgs erste Adresse für Exzellenz</p>
+                <div class="h-24 w-[1px] bg-[#e30613] mx-auto animate-bounce"></div>
             </div>
         </section>
-    </main>
 
-    <!-- ✂️ LEISTUNGEN -->
-    <section id="services" class="section-hidden pt-40 pb-20 px-10">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-6xl font-serif italic mb-20">Dienstleistungen</h2>
-            <div class="grid md:grid-cols-2 gap-32">
-                <div class="space-y-12">
-                    <h3 class="text-[#e30613] tracking-widest text-[10px] uppercase border-b border-white/10 pb-4">Women</h3>
-                    <div class="flex justify-between items-end border-b border-white/5 pb-6">
-                        <div>
-                            <p class="text-xl font-serif italic">Cut & Signature Style</p>
-                            <p class="text-[10px] text-white/40 uppercase mt-2">Beratung, Wäsche, Finish</p>
-                        </div>
-                        <p class="text-lg">ab 85€</p>
-                    </div>
-                    <div class="flex justify-between items-end border-b border-white/5 pb-6">
-                        <div>
-                            <p class="text-xl font-serif italic">Balayage / Couture Color</p>
-                            <p class="text-[10px] text-white/40 uppercase mt-2">Individuelle Farbkunst</p>
-                        </div>
-                        <p class="text-lg">ab 140€</p>
-                    </div>
+        <section class="py-32 px-10 border-t border-white/5">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-[10px] uppercase tracking-[0.5em] text-[#e30613] mb-6">Das Portfolio</h2>
+                <h3 class="text-4xl md:text-6xl font-serif italic mb-10">Schnitt, Farbe & Präzision</h3>
+                <p class="text-white/40 font-light leading-relaxed mb-12 max-w-xl mx-auto">Von klassischem Meisterschnitt bis hin zu High-End Colorationen. Erfahren Sie mehr über unsere Philosophie des Handwerks.</p>
+                <button onclick="showPage('services')" class="text-[10px] uppercase tracking-[0.3em] border-b border-[#e30613] pb-2 hover:text-[#e30613] transition">Alle Leistungen ansehen</button>
+            </div>
+        </section>
+
+        <section class="py-32 px-10 bg-[#080808]">
+            <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-20">
+                <div class="w-full md:w-1/2 h-[60vh] bg-[url('https://images.unsplash.com/photo-1503910321442-7fce7d3a1b5a?q=80&w=1974&auto=format&fit=crop')] bg-cover bg-center grayscale"></div>
+                <div class="w-full md:w-1/2">
+                    <h2 class="text-[10px] uppercase tracking-[0.5em] text-[#e30613] mb-6">Meisterfriseure</h2>
+                    <h3 class="text-4xl font-serif italic mb-8">Hinter dem Handwerk</h3>
+                    <p class="text-white/40 font-light mb-10 leading-relaxed">Arkadius Wilhelm und sein Team vereinen jahrzehntelange Erfahrung mit dem Gespür für zeitlose Eleganz.</p>
+                    <button onclick="showPage('team')" class="text-[10px] uppercase tracking-[0.3em] border-b border-[#e30613] pb-2">Das Team kennenlernen</button>
                 </div>
-                <div class="space-y-12">
-                    <h3 class="text-[#e30613] tracking-widest text-[10px] uppercase border-b border-white/10 pb-4">Men</h3>
-                    <div class="flex justify-between items-end border-b border-white/5 pb-6">
-                        <div>
-                            <p class="text-xl font-serif italic">Gentleman's Cut</p>
-                            <p class="text-[10px] text-white/40 uppercase mt-2">Präzision & Kopfmassage</p>
-                        </div>
-                        <p class="text-lg">ab 45€</p>
-                    </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="services" class="section-container py-40 px-10">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-5xl font-serif italic mb-20 text-center">Leistungen</h1>
+            <div class="space-y-12">
+                <div class="flex justify-between border-b border-white/10 pb-6">
+                    <span>Meisterschnitt Damen</span> <span>ab 85€</span>
+                </div>
+                <div class="flex justify-between border-b border-white/10 pb-6">
+                    <span>Meisterschnitt Herren</span> <span>ab 45€</span>
+                </div>
+                <div class="flex justify-between border-b border-white/10 pb-6">
+                    <span>Couture Color / Balayage</span> <span>ab 140€</span>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- 👥 TEAM -->
-    <section id="team" class="section-hidden pt-40 pb-20 px-10">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-center font-serif text-5xl italic mb-20">The Masters</h2>
-            <div class="grid md:grid-cols-3 gap-6 h-[70vh]">
-                <div class="relative group overflow-hidden bg-neutral-900">
-                    <div class="absolute inset-0 opacity-40 group-hover:opacity-100 transition-opacity duration-1000 bg-[url('https://images.unsplash.com/photo-1503910321442-7fce7d3a1b5a?q=80&w=1974&auto=format&fit=crop')] bg-cover"></div>
-                    <div class="absolute bottom-10 left-10">
-                        <p class="text-[#e30613] text-[10px] tracking-widest uppercase mb-2">Founder</p>
-                        <h3 class="text-2xl font-serif italic">Arkadius Wilhelm</h3>
-                    </div>
-                </div>
-                <div class="relative group overflow-hidden bg-neutral-800">
-                    <div class="absolute bottom-10 left-10">
-                        <p class="text-[#e30613] text-[10px] tracking-widest uppercase mb-2">Salon Manager</p>
-                        <h3 class="text-2xl font-serif italic">Jens Reineccius</h3>
-                    </div>
-                </div>
-                <div class="relative group overflow-hidden bg-neutral-900">
-                    <div class="absolute bottom-10 left-10">
-                        <p class="text-[#e30613] text-[10px] tracking-widest uppercase mb-2">Master Stylist</p>
-                        <h3 class="text-2xl font-serif italic">Gilberto S. Payan</h3>
-                    </div>
-                </div>
+    <div id="team" class="section-container py-40 px-10">
+        <h1 class="text-5xl font-serif italic text-center mb-20">Das Team</h1>
+        <div class="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+            <div class="text-center">
+                <div class="h-96 bg-neutral-900 mb-6 border border-white/5 grayscale"></div>
+                <h3 class="text-xl font-serif italic">Arkadius Wilhelm</h3>
+                <p class="text-[#e30613] text-[9px] uppercase tracking-widest mt-2">Founder</p>
+            </div>
+            <div class="text-center">
+                <div class="h-96 bg-neutral-800 mb-6 border border-white/5 grayscale"></div>
+                <h3 class="text-xl font-serif italic">Jens Reineccius</h3>
+                <p class="text-[#e30613] text-[9px] uppercase tracking-widest mt-2">Manager</p>
+            </div>
+            <div class="text-center">
+                <div class="h-96 bg-neutral-900 mb-6 border border-white/5 grayscale"></div>
+                <h3 class="text-xl font-serif italic">Gilberto S. Payan</h3>
+                <p class="text-[#e30613] text-[9px] uppercase tracking-widest mt-2">Master Stylist</p>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- 📅 BOOKING -->
-    <section id="booking" class="section-hidden pt-40 pb-20 px-10">
-        <div class="max-w-3xl mx-auto text-center">
-            <h2 class="text-5xl font-serif italic mb-12">Reservierung</h2>
-            <div class="bg-white/5 p-12 backdrop-blur-xl border border-white/10 text-left">
-                <div class="space-y-10">
-                    <div class="flex flex-col">
-                        <label class="text-[9px] uppercase tracking-[0.3em] text-white/40 mb-4">Wählen Sie den Meister</label>
-                        <select class="py-3 text-lg font-light">
-                            <option>Arkadius C. Wilhelm</option>
-                            <option>Jens Reineccius</option>
-                            <option>Gilberto S. Payan</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="text-[9px] uppercase tracking-[0.3em] text-white/40 mb-6 block">Verfügbare Zeiten (30 Min.)</label>
-                        <div class="grid grid-cols-4 gap-4" id="slots">
-                            <!-- JS generiert Slots -->
-                        </div>
-                    </div>
-                    <button class="w-full bg-[#e30613] py-5 text-[10px] uppercase tracking-[0.4em] font-bold mt-10 hover:bg-white hover:text-black transition-all">Termin Anfragen</button>
-                </div>
-            </div>
+    <div id="booking" class="section-container py-40 px-6">
+        <div class="max-w-2xl mx-auto bg-white/5 p-10 border border-white/10">
+            <h2 class="text-3xl font-serif italic mb-10 text-center text-[#e30613]">Terminanfrage</h2>
+            <select class="w-full bg-transparent border-b border-white/20 py-4 mb-10 outline-none">
+                <option>Arkadius Wilhelm</option>
+                <option>Jens Reineccius</option>
+                <option>Gilberto Payan</option>
+            </select>
+            <div class="grid grid-cols-4 gap-4 mb-10" id="slots"></div>
+            <button class="w-full bg-[#e30613] py-4 uppercase text-[10px] tracking-widest font-bold">Jetzt Reservieren</button>
         </div>
-    </section>
+    </div>
 
-    <!-- 📞 KONTAKT -->
-    <section id="contact" class="section-hidden pt-40 pb-20 px-10">
-        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-24">
-            <div>
-                <h1 class="text-6xl font-serif italic mb-12">Atelier</h1>
-                <div class="space-y-10 text-sm font-light tracking-wide text-white/60">
-                    <p>Klieverhagen 54<br>38440 Wolfsburg</p>
-                    <p>Di - Fr: 09:00 — 18:00<br>Sa: 08:00 — 14:00</p>
-                    <p class="text-white">T. 05361 272829<br>E. hello@itsin.de</p>
-                </div>
-            </div>
-            <div class="bg-white/5 p-10 border border-white/10">
-                <input type="text" placeholder="NAME" class="w-full py-6 mb-8 text-[10px] tracking-widest uppercase">
-                <input type="email" placeholder="EMAIL" class="w-full py-6 mb-8 text-[10px] tracking-widest uppercase">
-                <textarea placeholder="WIE KÖNNEN WIR HELFEN?" class="w-full py-6 mb-10 text-[10px] tracking-widest uppercase" rows="3"></textarea>
-                <button class="text-[#e30613] text-[10px] uppercase tracking-[0.4em] font-bold">Nachricht senden —&nbsp;</button>
-            </div>
+    <div id="contact" class="section-container py-40 px-10">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-5xl font-serif italic mb-10">Atelier</h1>
+            <p class="text-white/40 mb-10">Klieverhagen 54, 38440 Wolfsburg</p>
+            <p class="text-2xl font-light">T. 05361 272829</p>
         </div>
-    </section>
+    </div>
 
     <footer class="py-20 text-center opacity-20 text-[9px] tracking-[0.5em] uppercase">
-        &copy; 2026 IT'S IN Meisterfriseure. Private Selection.
+        &copy; 2026 IT'S IN MEISTERFRISEURE.
     </footer>
 
     <script>
+        function toggleMenu() {
+            document.getElementById('mobile-menu').classList.toggle('active');
+        }
+
+        function closeAndShow(pageId) {
+            toggleMenu();
+            showPage(pageId);
+        }
+
         function showPage(pageId) {
-            document.querySelectorAll('main, section').forEach(s => {
-                s.classList.remove('section-active');
-                s.classList.add('section-hidden');
-            });
-            document.getElementById(pageId).classList.remove('section-hidden');
-            document.getElementById(pageId).classList.add('section-active');
+            document.querySelectorAll('.section-container').forEach(s => s.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
             window.scrollTo(0,0);
         }
 
-        // Zeit-Slots von 09:00 bis 18:00
-        const slotContainer = document.getElementById('slots');
-        for (let hour = 9; hour < 18; hour++) {
-            ['00', '30'].forEach(min => {
-                const btn = document.createElement('button');
-                btn.className = "border border-white/10 py-2 text-[10px] hover:border-[#e30613] transition";
-                btn.innerText = `${hour}:${min}`;
-                btn.onclick = function() {
-                    document.querySelectorAll('#slots button').forEach(b => b.classList.remove('bg-[#e30613]'));
-                    this.classList.add('bg-[#e30613]');
-                };
-                slotContainer.appendChild(btn);
-            });
+        // Slots Generierung
+        const container = document.getElementById('slots');
+        for(let i=9; i<15; i++) {
+            const b = document.createElement('button');
+            b.className = "border border-white/10 py-2 text-[10px]";
+            b.innerText = i + ":00";
+            b.onclick = function() {
+                document.querySelectorAll('#slots button').forEach(x => x.classList.remove('bg-[#e30613]'));
+                this.classList.add('bg-[#e30613]');
+            };
+            container.appendChild(b);
         }
     </script>
 </body>
 </html>
+
+        
